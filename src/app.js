@@ -17,7 +17,7 @@ for(var i=0; i < 20; i++) {
   }));
 }
 //sort snakes
-//snakes.sort(s1, s1)
+//sort(snakes);
 
 
 /**
