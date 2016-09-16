@@ -2,6 +2,7 @@
 
 /* Classes */
 const Game = require('./game.js');
+const EntityManager = require('./entity-manager');
 const Player = require('./player.js');
 const Snake = require('./snake.js');
 
@@ -9,15 +10,17 @@ const Snake = require('./snake.js');
 var canvas = document.getElementById('screen');
 var game = new Game(canvas, update, render);
 var player = new Player({x: 382, y: 440});
+game.entities = new EntityManager(120);
 var snakes = [];
 for(var i=0; i < 20; i++) {
   snakes.push(new Snake({
     x: Math.random() * 760,
     y: Math.random() * 40 + 100
   }));
+  entities.addEntity(snakes[i]);
 }
-//sort snakes
-//sort(snakes);
+snakes.sort(function(s1,s2) {return s1.y-s2.y;})
+
 
 
 /**
@@ -44,6 +47,12 @@ function update(elapsedTime) {
   player.update(elapsedTime);
   snakes.forEach(function(snake) { snake.update(elapsedTime);});
   // TODO: Update the game objects
+  
+  entities.collide(function(entity1, entity2))
+  {
+	  entity1.color = 'red';
+	  entity2.color = 'red';
+  }
 }
 
 /**

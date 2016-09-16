@@ -32,3 +32,31 @@ EntityManager.prototype.addEntity() = function(entity)
 		}
 	}
 }
+
+EntityManager.prototype.updateEntity = function(entity)
+{
+	var x = Math.floor(entity.x/this.cellSize);
+	var y = Math.ceil((entity.x + entity.width/this.cellSize));
+	
+	if(index != entity._cell)
+	{
+	}
+	
+}
+
+Entitymanager.prototype.collide = function(callback)
+{
+	//diagonal
+	//if(i < self.numberOfCells - self.widthInCells && i % (self.widthInCells)....
+			checkForCollision(entity1, entity2, callback);
+}
+
+function checkForCollision(entity1, entity2, callback)
+{
+	//var collides = check for overlapping squares like in snake
+	
+	if(collides)
+	{
+		callback(entity1, entity2); //handle what happens from collision elsewhere
+	}
+}

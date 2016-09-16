@@ -16,10 +16,11 @@ function Snake(position) {
   this.timer = 0;
   this.x = position.x;
   this.y = position.y;
-  this.width  = 16;
-  this.height = 16;
+  this.width  = 32;
+  this.height = 32;
   this.leftBound = position.x - 20;
   this.rightBound = position.x + 20;
+  this.color = '#00000000';
 }
 
 /** Declare spritesheet at the class level */
@@ -48,6 +49,7 @@ Snake.prototype.update = function(elapsedTime) {
       if(this.x > this.rightBound) this.state = "left";
       break;
   }
+  this.color = '#00000000';
 }
 
 /**
@@ -63,7 +65,7 @@ Snake.prototype.render = function(time, ctx) {
       // source rectangle
       this.frame * this.width, 0, this.width, this.height,
       // destination rectangle
-      this.x, this.y, 2*this.width, 2*this.height
+      this.x, this.y, this.width, this.height
     );
   } else {
     ctx.drawImage(
@@ -72,7 +74,9 @@ Snake.prototype.render = function(time, ctx) {
       // source rectangle
       this.frame * this.width, 0, this.width, this.height,
       // destination rectangle
-      this.x, this.y, 2*this.width, 2*this.height
+      this.x, this.y, this.width, this.height
     );
   }
+  ctx.fillStyle = this.color;
+  ctx.strokeRect(this.x, this.y, this.width, this.height)
 }
